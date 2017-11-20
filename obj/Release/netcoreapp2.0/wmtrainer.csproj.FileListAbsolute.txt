@@ -1,0 +1,12 @@
+C:\Projects2\wmtrainer\bin\Release\netcoreapp2.0\wmtrainer.deps.json
+C:\Projects2\wmtrainer\bin\Release\netcoreapp2.0\wmtrainer.runtimeconfig.json
+C:\Projects2\wmtrainer\bin\Release\netcoreapp2.0\wmtrainer.runtimeconfig.dev.json
+C:\Projects2\wmtrainer\bin\Release\netcoreapp2.0\wmtrainer.dll
+C:\Projects2\wmtrainer\bin\Release\netcoreapp2.0\wmtrainer.pdb
+C:\Projects2\wmtrainer\obj\Release\netcoreapp2.0\wmtrainer.csprojResolveAssemblyReference.cache
+C:\Projects2\wmtrainer\obj\Release\netcoreapp2.0\wmtrainer.csproj.CoreCompileInputs.cache
+C:\Projects2\wmtrainer\obj\Release\netcoreapp2.0\UserSecretsAssemblyInfo.cs
+C:\Projects2\wmtrainer\obj\Release\netcoreapp2.0\wmtrainer.AssemblyInfoInputs.cache
+C:\Projects2\wmtrainer\obj\Release\netcoreapp2.0\wmtrainer.AssemblyInfo.cs
+C:\Projects2\wmtrainer\obj\Release\netcoreapp2.0\wmtrainer.dll
+C:\Projects2\wmtrainer\obj\Release\netcoreapp2.0\wmtrainer.pdb
