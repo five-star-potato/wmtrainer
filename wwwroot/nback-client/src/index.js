@@ -29,9 +29,11 @@ document.addEventListener("keydown", (event) => {
     switch (event.keyCode) {
         case KEYCODE_A:
             store.dispatch(act.pressPosition());
+            store.dispatch(act.checkPosition());
             break;
         case KEYCODE_L:
             store.dispatch(act.pressAudio());
+            store.dispatch(act.checkAudio());
             break;
         default:
             break;

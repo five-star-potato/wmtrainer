@@ -91,28 +91,28 @@ const Board = ({ coords, showResult, score, onCloseResult }) => {
           <Modal.Title>{scoreMsg(score.pct)}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Your score is: {score.pct}</p>
+          <p>Your score is: {score.pct}%</p>
           <table className="table">
             <thead>
               <tr>
                 <th scope="col"></th>
-                <th scope="col"># of correct hits</th>
-                <th scope="col"># of incorrect hits</th>
-                <th scope="col"># of miss</th>
+                <th scope="col" style={{color:"SeaGreen"}}># of correct hits</th>
+                <th scope="col" style={{color:"FireBrick"}}># of incorrect hits</th>
+                <th scope="col" style={{color:"FireBrick"}}># of miss</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <th scope="row">Position</th>
-                <td>{score.numPositionTP}</td>
-                <td>{score.numPositionFP}</td>
-                <td>{score.numPositionFN}</td>
+                <td style={{color:"MediumSeaGreen"}}>{score.numPositionTP}</td>
+                <td style={{color:"Crimson"}}>{score.numPositionFP}</td>
+                <td style={{color:"Crimson"}}>{score.numPositionFN}</td>
               </tr>
               <tr>
                 <th scope="row">Audio</th>
-                <td>{score.numAudioTP}</td>
-                <td>{score.numAudioFP}</td>
-                <td>{score.numAudioFN}</td>
+                <td style={{color:"MediumSeaGreen"}}>{score.numAudioTP}</td>
+                <td style={{color:"Crimson"}}>{score.numAudioFP}</td>
+                <td style={{color:"Crimson"}}>{score.numAudioFN}</td>
               </tr>
             </tbody>
           </table>

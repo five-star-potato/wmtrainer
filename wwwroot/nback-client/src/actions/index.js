@@ -1,18 +1,20 @@
-export const toggleShape = (x, y, a) => {
+export const selectCoord = (x, y, a, i) => {
     console.log(`x: ${x} y: ${y}`);
     return (dispatch) => {
         dispatch({
             type: 'SELECT_COORD',
             x: x,
             y: y,
-            alphabet: a
+            alphabet: a,
+            currIndex: i
         });
         setTimeout(() => {
             dispatch({
                 type: 'SELECT_COORD',
                 x: -1,
                 y: -1,
-                alphabet: ''
+                alphabet: '',
+                currIndex: i
             });
         },700)
     }
@@ -61,12 +63,12 @@ const alphabets = ['C', 'H', 'J', 'K', 'R', 'S', 'U', 'W', 'Z'];
 let generateTrials = (numBack, numTrials) => {
     // First get a probability range
     var cutoff = 0.5;
-    var probPosRange = Math.random() * cutoff;
-    var probAlphaRange = Math.random() * cutoff;
-    var probPos = Math.random();
-    var probAlpha = Math.random();
     var trials = [];
     for (var i = 0; i < numTrials; i++) {
+        var probPosRange = Math.random() * cutoff + 0.5;
+        var probAlphaRange = Math.random() * cutoff + 0.5;
+        var probPos = Math.random();
+        var probAlpha = Math.random();
         var turn = {
             x: parseInt(Math.random() * 3),
             y: parseInt(Math.random() * 3),
@@ -81,6 +83,9 @@ let generateTrials = (numBack, numTrials) => {
         }
         trials.push(turn);
     }
+    trials.forEach(t => {
+        console.log("t: " + t.x + ":" + t.y + ":" + t.alphabet);
+    });
     return trials;
 };
 
@@ -95,7 +100,7 @@ export function startGame(options) {
         setTimeout(() => {
             var t = trials[cnt];
             // for the first display of turns, set a 1 sec delay; subsequent delays are based on options
-            dispatch(toggleShape(t.x, t.y, t.alphabet));
+            dispatch(selectCoord(t.x, t.y, t.alphabet, cnt));
             dispatch({type: 'DECREMENT_TURN'});
             
             gameTimer = setInterval(() => {
@@ -103,11 +108,11 @@ export function startGame(options) {
                 cnt++;
                 if (cnt < options.numTrials) {
                     t = trials[cnt];                
-                    dispatch(toggleShape(t.x, t.y, t.alphabet));
+                    dispatch(selectCoord(t.x, t.y, t.alphabet, cnt));
                     dispatch({type: 'DECREMENT_TURN'});
                 } 
                 else {
-                    dispatch(toggleShape(-1, -1, ''));
+                    dispatch(selectCoord(-1, -1, '', -1));
                     dispatch(showResult());
                     dispatch(stopGame());       
                 }
@@ -120,7 +125,7 @@ export function startGame(options) {
 export const stopGame = () => {
     return (dispatch) => {
         console.log("clearing interval");
-        dispatch(toggleShape(-1, -1, ''));
+        dispatch(selectCoord(-1, -1, ''));
         clearInterval(gameTimer);
         dispatch({ type: 'STOP_GAME' });
     }
