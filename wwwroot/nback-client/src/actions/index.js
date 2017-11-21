@@ -90,6 +90,7 @@ let generateTrials = (numBack, numTrials) => {
 };
 
 var gameTimer;
+var initTimer;
 
 export function startGame(options) {
     return (dispatch) => {
@@ -97,7 +98,7 @@ export function startGame(options) {
         var trials = generateTrials(options.numBack, options.numTrials);
         dispatch(addTrials(trials));
         let cnt = 0;
-        setTimeout(() => {
+        initTimer = setTimeout(() => {
             var t = trials[cnt];
             // for the first display of turns, set a 1 sec delay; subsequent delays are based on options
             dispatch(selectCoord(t.x, t.y, t.alphabet, cnt));
@@ -123,10 +124,14 @@ export function startGame(options) {
 }
 
 export const stopGame = () => {
+    if (initTimer)
+        clearTimeout(initTimer);
+    if (gameTimer)
+        clearInterval(gameTimer);
+
     return (dispatch) => {
         console.log("clearing interval");
         dispatch(selectCoord(-1, -1, ''));
-        clearInterval(gameTimer);
         dispatch({ type: 'STOP_GAME' });
     }
 }
