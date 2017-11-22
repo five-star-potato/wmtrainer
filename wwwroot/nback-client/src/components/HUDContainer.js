@@ -6,6 +6,7 @@ import * as act from '../actions';
 const mapStateToProps = state => {
     return {
         gameStarted: state.game.gameStarted,
+        showOptions: state.game.showOptions,
         options: state.game.options,
         numTrialsLeft: state.game.numTrialsLeft, 
         tpScore: (state.game.score.numPositionTP + state.game.score.numAudioTP), 
@@ -22,10 +23,19 @@ const mapDispatchToProps = dispatch => {
         onStopClick: () => {
             dispatch(act.stopGame());
         },
-        
+        onCloseOptions: () => {
+            dispatch(act.closeOptions());
+        },
+        onShowOptions: () => {
+            dispatch(act.showOptions());
+        },
+        onSaveOptions: () => {
+            dispatch(act.saveOptions());
+        }
     };
 };
 
 const HUDContainer = connect(mapStateToProps, mapDispatchToProps)(HUD);
 
 export default HUDContainer;
+

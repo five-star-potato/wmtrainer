@@ -141,3 +141,7 @@ export const pressPosition = () => ({ type: 'PRESS_POSITION' });
 export const pressAudio = () => ({ type: 'PRESS_AUDIO' });
 
 export const closeResult = () => ({ type: 'CLOSE_RESULT'});
+
+export const closeOptions = () => ({ type: 'CLOSE_OPTIONS'});
+
+export const showOptions = () => ({ type: 'SHOW_OPTIONS'});

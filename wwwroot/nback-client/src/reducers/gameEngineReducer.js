@@ -5,6 +5,7 @@ var defaultState = () => ({
         numBack: 1
     },
     showResult: false,
+    showOptions: false,
     gameStarted: false,
     numTrialsLeft: 0,
     turns: [],
@@ -42,6 +43,12 @@ const gameEngineReducer = (state = defaultState(), action) => {
         }
         case 'CLOSE_RESULT': {
             return { ...state, showResult: false };
+        } break;
+        case 'CLOSE_OPTIONS': {
+            return { ...state, showOptions: false };
+        } break;
+        case 'SHOW_OPTIONS': {
+            return { ...state, showOptions: true };
         } break;
         case 'SHOW_RESULT': {
             return { ...state, showResult: true };
