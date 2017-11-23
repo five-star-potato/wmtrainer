@@ -2,7 +2,7 @@ var defaultState = () => ({
     options: {
         delay: 3000,
         numTrials: 10,
-        numBack: 1
+        level: 3
     },
     showResult: false,
     showOptions: false,
@@ -73,19 +73,33 @@ const gameEngineReducer = (state = defaultState(), action) => {
         } break;
 
         case 'ADD_TRIALS': {
-            //console.log(state.turns);
             return {
                 ...state,
                 turns: JSON.parse(JSON.stringify(action.trials))
             };
         } break;
 
+        case 'SAVE_OPTIONS': {
+            return {
+                ...state,
+                showOptions: false,
+                options: { ...action.options }
+            };
+        } break;
+
+        case 'CLOSE_OPTIONS': {
+            return {
+                ...state,
+                showOptions: false
+            };
+        } break;
+
         case 'CHECK_POSITION': {
             console.log("checking position.....");
             var newState = { ...state };
-            if (state.position_pressed && state.currIndex > state.options.numBack) {
+            if (state.position_pressed && state.currIndex > state.options.level) {
                 let lastEle = state.turns[state.currIndex]; // last element
-                let t = state.turns[state.currIndex - state.options.numBack];
+                let t = state.turns[state.currIndex - state.options.level];
                 if (t.x === lastEle.x && t.y === lastEle.y)
                     // Pressing POS is correct
                     newState.score.numPositionTP++;
@@ -102,9 +116,9 @@ const gameEngineReducer = (state = defaultState(), action) => {
         case 'CHECK_AUDIO': {
             console.log("checking audio.....");
             var newState = { ...state };
-            if (state.audio_pressed && state.currIndex > state.options.numBack) {
+            if (state.audio_pressed && state.currIndex > state.options.level) {
                 let lastEle = state.turns[state.currIndex]; // last element
-                let t = state.turns[state.currIndex - state.options.numBack];
+                let t = state.turns[state.currIndex - state.options.level];
                 if (t.alphabet === lastEle.alphabet)
                     // Pressing POS is correct
                     newState.score.numAudioTP++;
@@ -121,9 +135,9 @@ const gameEngineReducer = (state = defaultState(), action) => {
         case 'CHECK_BOTH': {
             // check to see if the user has missed pressing the buttons at the right moment
             var newState = { ...state };
-            if (state.currIndex > state.options.numBack) {
+            if (state.currIndex > state.options.level) {
                 let lastEle = state.turns[state.currIndex]; // last element
-                let t = state.turns[state.currIndex - state.options.numBack];
+                let t = state.turns[state.currIndex - state.options.level];
 
                 if (!state.position_pressed && t.x === lastEle.x && t.y === lastEle.y)
                     // Missed pressing button

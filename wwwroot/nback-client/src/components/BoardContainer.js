@@ -19,7 +19,6 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-
 const BoardContainer = connect(mapStateToProps,mapDispatchToProps)(Board);
 
 export default BoardContainer;

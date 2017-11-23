@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => {
             dispatch(act.pressAudio());
             dispatch(act.checkAudio());
         }
-    };
+    };x
 };
 
 const GamePadContainer = connect(mapStateToProps, mapDispatchToProps)(GamePad);

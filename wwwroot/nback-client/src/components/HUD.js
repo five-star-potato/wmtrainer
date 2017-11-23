@@ -10,7 +10,7 @@ import tooltip from 'react-bootstrap/lib/Tooltip';
 import PropTypes from 'prop-types';
 import '../App.css';
 
-const HUD = ({ gameStarted, showOptions, options, numTrialsLeft, tpScore, fpScore, fnScore, pct, onStartClick, onStopClick, onShowOptions, onCloseOptions, onSaveOptions }) => {
+const HUD = ({ gameStarted, showOptions, options, numTrialsLeft, tpScore, fpScore, fnScore, pct, onStartClick, onStopClick, onCloseOptions, onShowOptions, onSaveOptions }) => {
     let btnText = gameStarted ? "Stop Game" : "Start Game";
     let toggleGame = () => {
         if (gameStarted) {
@@ -22,6 +22,16 @@ const HUD = ({ gameStarted, showOptions, options, numTrialsLeft, tpScore, fpScor
     }
     let displayOptions = () => {
         onShowOptions();
+    }
+    let saveOptions = () => {
+        console.log(options);
+        onSaveOptions(options);
+    }
+    let handleInputChange = (event) => {
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+        options[name] = value;
     }
     return (
         <div>
@@ -43,11 +53,34 @@ const HUD = ({ gameStarted, showOptions, options, numTrialsLeft, tpScore, fpScor
                     <Modal.Title>Manage Options</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Body
+                    <form>
+                        <div class="form-group">
+                            <label for="numTrials">Number of Trials</label>
+                            <input id="numTrials" type="text" className="form-control" placeholder="Enter number of trials" value={options.numTrials} onChange={(e) => handleInputChange(e)} />
+                        </div>
+                        <div class="form-group">
+                            <label for="timeDelay">Delay between trials (seconds)</label>
+                            <input id="timeDelay" type="text" className="form-control" placeholder="Enter delay in seconds" value={options.delay} onChange={(e) => handleInputChange(e)}/>
+                        </div>
+                        <div class="form-group">
+                            <label for="numLevel">N-Back numLevel</label>
+                            <select className="form-control" id="numLevel" value={options.level} onChange={(e) => handleInputChange(e)} >
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                        </div>                    </form>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={() => onSaveOptions()}>Save</Button>
-                    <Button onClick={() => onCloseResult()}>Cancel</Button>
+                    <Button onClick={() => onCloseOptions()}>Cancel</Button>
                 </Modal.Footer>
             </Modal>
         </div>

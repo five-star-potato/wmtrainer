@@ -60,7 +60,7 @@ const alphabets = ['C', 'H', 'J', 'K', 'R', 'S', 'U', 'W', 'Z'];
 //     return { x, y, alphabet };
 // };
 
-let generateTrials = (numBack, numTrials) => {
+let generateTrials = (level, numTrials) => {
     // First get a probability range
     var cutoff = 0.5;
     var trials = [];
@@ -74,12 +74,12 @@ let generateTrials = (numBack, numTrials) => {
             y: parseInt(Math.random() * 3),
             alphabet: alphabets[parseInt(Math.random() * alphabets.length)]
         };
-        if (probPos > probPosRange && i >= numBack) {
-            turn.x = trials.slice(-1 * numBack)[0].x;            
-            turn.y = trials.slice(-1 * numBack)[0].y;            
+        if (probPos > probPosRange && i >= level) {
+            turn.x = trials.slice(-1 * level)[0].x;            
+            turn.y = trials.slice(-1 * level)[0].y;            
         }
-        if (probAlpha > probAlphaRange && i >= numBack) {
-            turn.alphabet = trials.slice(-1 * numBack)[0].alphabet;            
+        if (probAlpha > probAlphaRange && i >= level) {
+            turn.alphabet = trials.slice(-1 * level)[0].alphabet;            
         }
         trials.push(turn);
     }
@@ -95,7 +95,7 @@ var initTimer;
 export function startGame(options) {
     return (dispatch) => {
         dispatch({ type: 'START_GAME' });
-        var trials = generateTrials(options.numBack, options.numTrials);
+        var trials = generateTrials(options.level, options.numTrials);
         dispatch(addTrials(trials));
         let cnt = 0;
         initTimer = setTimeout(() => {
@@ -145,3 +145,10 @@ export const closeResult = () => ({ type: 'CLOSE_RESULT'});
 export const closeOptions = () => ({ type: 'CLOSE_OPTIONS'});
 
 export const showOptions = () => ({ type: 'SHOW_OPTIONS'});
+
+export const saveOptions = (opts) => {
+    return {
+        type: 'SAVE_OPTIONS',
+        trials: opts
+    }
+}
