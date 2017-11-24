@@ -29,8 +29,8 @@ const mapDispatchToProps = dispatch => {
         onShowOptions: () => {
             dispatch(act.showOptions());
         },
-        onSaveOptions: () => {
-            dispatch(act.saveOptions());
+        onSaveOptions: (opts) => {
+            dispatch(act.saveOptions(opts));
         }
     };
 };

@@ -54,17 +54,17 @@ const HUD = ({ gameStarted, showOptions, options, numTrialsLeft, tpScore, fpScor
                 </Modal.Header>
                 <Modal.Body>
                     <form>
-                        <div class="form-group">
-                            <label for="numTrials">Number of Trials</label>
-                            <input id="numTrials" type="text" className="form-control" placeholder="Enter number of trials" value={options.numTrials} onChange={(e) => handleInputChange(e)} />
+                        <div className="form-group">
+                            <label htmlFor="numTrials">Number of Trials</label>
+                            <input id="numTrials" type="text" name="numTrials" className="form-control" placeholder="Enter number of trials" value={options.numTrials} onChange={(e) => handleInputChange(e)} />
                         </div>
-                        <div class="form-group">
-                            <label for="timeDelay">Delay between trials (seconds)</label>
-                            <input id="timeDelay" type="text" className="form-control" placeholder="Enter delay in seconds" value={options.delay} onChange={(e) => handleInputChange(e)}/>
+                        <div className="form-group">
+                            <label htmlFor="timeDelay">Delay between trials (seconds)</label>
+                            <input id="timeDelay" type="text" name="delay" className="form-control" placeholder="Enter delay in seconds" value={options.delay} onChange={(e) => handleInputChange(e)}/>
                         </div>
-                        <div class="form-group">
-                            <label for="numLevel">N-Back numLevel</label>
-                            <select className="form-control" id="numLevel" value={options.level} onChange={(e) => handleInputChange(e)} >
+                        <div className="form-group">
+                            <label htmlFor="numLevel">N-Back numLevel</label>
+                            <select className="form-control" name="level" id="numLevel" value={options.level} onChange={(e) => handleInputChange(e)} >
                                 <option>1</option>
                                 <option>2</option>
                                 <option>3</option>
