@@ -49,7 +49,7 @@ export const checkAudio = () => {
     }
 }
 
-const alphabets = ['C', 'H', 'J', 'K', 'R', 'S', 'U', 'W', 'Z'];
+const alphabets = ['a', 'c', 'k', 'l', 'r', 's', 't', 'w', 'q'];
 
 // let generateTurn = () => {
 //     // first generate a probability of whether
@@ -149,6 +149,6 @@ export const showOptions = () => ({ type: 'SHOW_OPTIONS'});
 export const saveOptions = (opts) => {
     return {
         type: 'SAVE_OPTIONS',
-        trials: opts
+        options: opts
     }
 }

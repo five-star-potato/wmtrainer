@@ -7,15 +7,16 @@ import popover from 'react-bootstrap/lib/Popover';
 import tooltip from 'react-bootstrap/lib/Tooltip';
 import PropTypes from 'prop-types';
 import '../App.css';
+import alphabet_a from '../assets/audio/a.mp3';
 import alphabet_c from '../assets/audio/c.mp3';
 import alphabet_h from '../assets/audio/h.mp3';
-import alphabet_j from '../assets/audio/j.mp3';
 import alphabet_k from '../assets/audio/k.mp3';
+import alphabet_l from '../assets/audio/l.mp3';
+import alphabet_q from '../assets/audio/q.mp3';
 import alphabet_r from '../assets/audio/r.mp3';
 import alphabet_s from '../assets/audio/s.mp3';
-import alphabet_u from '../assets/audio/u.mp3';
+import alphabet_t from '../assets/audio/t.mp3';
 import alphabet_w from '../assets/audio/w.mp3';
-import alphabet_z from '../assets/audio/z.mp3';
 
 var hlSquare = {
   backgroundColor: "magenta"
@@ -37,32 +38,35 @@ var scoreMsg = (p) =>
 const Board = ({ coords, showResult, score, onCloseResult }) => {
   var audio;
   switch (coords.alphabet) {
-    case 'C':
+    case 'a':
+      audio = new Audio(alphabet_a);
+      break;
+    case 'c':
       audio = new Audio(alphabet_c);
       break;
-    case 'H':
+    case 'h':
       audio = new Audio(alphabet_h);
       break;
-    case 'K':
+    case 'k':
       audio = new Audio(alphabet_k);
       break;
-    case 'J':
-      audio = new Audio(alphabet_j);
+    case 'l':
+      audio = new Audio(alphabet_l);
       break;
-    case 'R':
+    case 'q':
+      audio = new Audio(alphabet_q);
+      break;
+    case 'r':
       audio = new Audio(alphabet_r);
       break;
-    case 'S':
+    case 's':
       audio = new Audio(alphabet_s);
       break;
-    case 'U':
-      audio = new Audio(alphabet_u);
+    case 't':
+      audio = new Audio(alphabet_t);
       break;
-    case 'W':
+    case 'w':
       audio = new Audio(alphabet_w);
-      break;
-    case 'Z':
-      audio = new Audio(alphabet_z);
       break;
   }
   if (audio)
@@ -91,7 +95,7 @@ const Board = ({ coords, showResult, score, onCloseResult }) => {
           <Modal.Title>{scoreMsg(score.pct)}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Your score is: {score.pct}%</p>
+          <p>Your score is: {Math.round(score.pct)}%</p>
           <table className="table">
             <thead>
               <tr>
@@ -109,7 +113,7 @@ const Board = ({ coords, showResult, score, onCloseResult }) => {
                 <td style={{color:"Crimson"}}>{score.numPositionFN}</td>
               </tr>
               <tr>
-                <th scope="row">Audio</th>
+                <th scope="row">Sound</th>
                 <td style={{color:"MediumSeaGreen"}}>{score.numAudioTP}</td>
                 <td style={{color:"Crimson"}}>{score.numAudioFP}</td>
                 <td style={{color:"Crimson"}}>{score.numAudioFN}</td>

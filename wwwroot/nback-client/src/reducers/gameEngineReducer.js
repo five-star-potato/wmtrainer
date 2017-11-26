@@ -1,8 +1,8 @@
 var defaultState = () => ({
     options: {
-        delay: 3000,
-        numTrials: 10,
-        level: 3
+        delay: 2000,
+        numTrials: 20,
+        level: 1
     },
     showResult: false,
     showOptions: false,
@@ -55,7 +55,7 @@ const gameEngineReducer = (state = defaultState(), action) => {
         } break;
 
         case 'START_GAME': {
-            return { ...defaultState(), gameStarted: true, numTrialsLeft: state.options.numTrials, currIndex: -1 };
+            return { ...defaultState(), gameStarted: true, numTrialsLeft: state.options.numTrials, currIndex: -1, options: { ...state.options } };
         } break;
 
         case 'STOP_GAME': {
@@ -80,9 +80,10 @@ const gameEngineReducer = (state = defaultState(), action) => {
         } break;
 
         case 'SAVE_OPTIONS': {
+            if (action.options.delay < 1000)
+                action.options.delay = 1000;
             return {
                 ...state,
-                showOptions: false,
                 options: { ...action.options }
             };
         } break;

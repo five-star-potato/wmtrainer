@@ -24,7 +24,6 @@ const HUD = ({ gameStarted, showOptions, options, numTrialsLeft, tpScore, fpScor
         onShowOptions();
     }
     let saveOptions = () => {
-        console.log(options);
         onSaveOptions(options);
     }
     let handleInputChange = (event) => {
@@ -32,6 +31,7 @@ const HUD = ({ gameStarted, showOptions, options, numTrialsLeft, tpScore, fpScor
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
         options[name] = value;
+        onSaveOptions(options);
     }
     return (
         <div>
@@ -60,7 +60,25 @@ const HUD = ({ gameStarted, showOptions, options, numTrialsLeft, tpScore, fpScor
                         </div>
                         <div className="form-group">
                             <label htmlFor="timeDelay">Delay between trials (seconds)</label>
-                            <input id="timeDelay" type="text" name="delay" className="form-control" placeholder="Enter delay in seconds" value={options.delay} onChange={(e) => handleInputChange(e)}/>
+                            <select className="form-control" name="timeDelay" id="timeDelay" value={options.delay} onChange={(e) => handleInputChange(e)} >
+                                <option>1000</option>
+                                <option>1500</option>
+                                <option>2000</option>
+                                <option>2500</option>
+                                <option>3000</option>
+                                <option>3500</option>
+                                <option>4000</option>
+                                <option>4500</option>
+                                <option>5000</option>
+                                <option>5500</option>
+                                <option>6000</option>
+                                <option>6500</option>
+                                <option>7000</option>
+                                <option>7500</option>
+                                <option>8000</option>
+                                <option>8500</option>
+                                <option>9000</option>
+                            </select>
                         </div>
                         <div className="form-group">
                             <label htmlFor="numLevel">N-Back numLevel</label>
@@ -76,11 +94,11 @@ const HUD = ({ gameStarted, showOptions, options, numTrialsLeft, tpScore, fpScor
                                 <option>9</option>
                                 <option>10</option>
                             </select>
-                        </div>                    </form>
+                        </div>
+                    </form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button onClick={() => onSaveOptions()}>Save</Button>
-                    <Button onClick={() => onCloseOptions()}>Cancel</Button>
+                    <Button onClick={() => onCloseOptions()}>Close</Button>
                 </Modal.Footer>
             </Modal>
         </div>
