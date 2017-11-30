@@ -20,7 +20,7 @@
         body {
             font: 20px Montserrat, sans-serif;
             line-height: 1.8;
-            color: #333;
+            color: #f5f6f7;
         }
 
         p {
@@ -37,7 +37,7 @@
         }
 
         .bg-2 {
-            background-color: #474e5d; /* Dark Blue */
+            background-color: #1ABCA8; /* Dark Blue */
             color: #ffffff;
         }
 
@@ -86,11 +86,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-<<<<<<< HEAD
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Working Memory</a>
-=======
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand" style="padding:0"><img style="height:90%" src="~/images/focuser.png" /></a>
->>>>>>> 0ca93ccabd4131d8e8d5cd2a27d308c0935f1687
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand" style="padding:0"><img style="height:90%" src="~/images/working_memory.png" /></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -102,21 +98,11 @@
             </div>
         </div>
     </nav>
-    <div class="container body-content" style="margin-top:80px">
+    <div class="container body-content">
         @RenderBody()
-        <!-- Third Container (Grid) -->
-        <footer class="bg-dark">
-            <h3 style="margin-left:-8px"><img src="/images/focuser_sm.png" alt="focuser.io"></h3>
-            <div class="row">
-                <div class="col-md-12 col-lg-4 logo-description">
-                    <h4>Our Mission</h4>
-                    <ul><li><a href="/social-purpose/" target="_top">Social Purpose</a></li><li><a href="/about-us/" target="_top">About Us</a></li><li><a href="/contact-us/" target="_top">Contact Us</a></li></ul>
-                </div>
-                <div class="col-sm-4 col-md-3 col-lg-2">
-                    <h4>How it works</h4>
-                    <ul><li><a href="/services/" target="_top">Services</a></li></ul>
-                </div>
-            </div>
+        <hr />
+        <footer>
+            <p>&copy; 2017 - Working Memory</p>
         </footer>
     </div>
 
@@ -142,7 +128,5 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
-
-
 </body>
 </html>
