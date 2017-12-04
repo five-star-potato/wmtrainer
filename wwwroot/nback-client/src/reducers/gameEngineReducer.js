@@ -1,7 +1,7 @@
 var defaultState = () => ({
     options: {
         delay: 2000,
-        numTrials: 20,
+        numTrials: 5,
         level: 1
     },
     showResult: false,

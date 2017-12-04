@@ -1,3 +1,6 @@
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
+
 export const selectCoord = (x, y, a, i) => {
     console.log(`x: ${x} y: ${y}`);
     return (dispatch) => {
@@ -89,45 +92,38 @@ let generateTrials = (level, numTrials) => {
     return trials;
 };
 
-var gameTimer;
-var initTimer;
+var timerSubscribe;
 
 export function startGame(options) {
     return (dispatch) => {
         dispatch({ type: 'START_GAME' });
         var trials = generateTrials(options.level, options.numTrials);
         dispatch(addTrials(trials));
-        let cnt = 0;
-        initTimer = setTimeout(() => {
-            var t = trials[cnt];
-            // for the first display of turns, set a 1 sec delay; subsequent delays are based on options
-            dispatch(selectCoord(t.x, t.y, t.alphabet, cnt));
-            dispatch({type: 'DECREMENT_TURN'});
-            
-            gameTimer = setInterval(() => {
+
+        const source = Observable.timer(1000, options.delay).take(options.numTrials);
+        const timerSubscribe = source.subscribe(
+            cnt => {
+                console.log("emitting: " + cnt);
+                var t = trials[cnt];
+                // for the first display of turns, set a 1 sec delay; subsequent delays are based on options
+                dispatch(selectCoord(t.x, t.y, t.alphabet, cnt));
+                dispatch({ type: 'DECREMENT_TURN' });
                 dispatch(checkBoth());
-                cnt++;
-                if (cnt < options.numTrials) {
-                    t = trials[cnt];                
-                    dispatch(selectCoord(t.x, t.y, t.alphabet, cnt));
-                    dispatch({type: 'DECREMENT_TURN'});
-                } 
-                else {
-                    dispatch(selectCoord(-1, -1, '', -1));
-                    dispatch(showResult());
-                    dispatch(stopGame());       
-                }
-                // play audio
-            }, options.delay);
-        }, 1000);
+            },
+            err => {
+                console.log(err);
+            },
+            () => {
+                dispatch(selectCoord(-1, -1, '', -1));
+                dispatch(showResult());
+                dispatch(stopGame());
+            }
+        );
     }
 }
 
 export const stopGame = () => {
-    if (initTimer)
-        clearTimeout(initTimer);
-    if (gameTimer)
-        clearInterval(gameTimer);
+    timerSubscribe.unsubscribe();
 
     return (dispatch) => {
         console.log("clearing interval");

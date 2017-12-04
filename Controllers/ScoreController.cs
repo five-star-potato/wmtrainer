@@ -10,7 +10,8 @@ namespace wmtrainer.Controllers
 {
     public class GameScore
     {
-
+        public int GameID { get; set; }
+        public decimal Score { get; set; }
     }
     
     [Produces("application/json")]
@@ -42,8 +43,9 @@ namespace wmtrainer.Controllers
         
         // POST: api/Score
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody] GameScore value)
         {
+
         }
         
         // PUT: api/Score/5
