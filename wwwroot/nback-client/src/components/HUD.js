@@ -59,8 +59,8 @@ const HUD = ({ gameStarted, showOptions, options, numTrialsLeft, tpScore, fpScor
                             <input id="numTrials" type="text" name="numTrials" className="form-control" placeholder="Enter number of trials" value={options.numTrials} onChange={(e) => handleInputChange(e)} />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="timeDelay">Delay between trials (seconds)</label>
-                            <select className="form-control" name="timeDelay" id="timeDelay" value={options.delay} onChange={(e) => handleInputChange(e)} >
+                            <label htmlFor="delay">Delay between trials (seconds)</label>
+                            <select className="form-control" name="delay" id="delay" value={options.delay} onChange={(e) => handleInputChange(e)} >
                                 <option>1000</option>
                                 <option>1500</option>
                                 <option>2000</option>
