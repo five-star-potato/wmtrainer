@@ -12,6 +12,7 @@ namespace wmtrainer.Controllers
     {
         public IActionResult Index()
         {
+            //System.Diagnostics.Debug.WriteLine(HttpContext.User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier).Value);
             return View();
         }
 
