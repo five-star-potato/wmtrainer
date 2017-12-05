@@ -1,5 +1,5 @@
+import 'rxjs';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/interval';
 
 export const selectCoord = (x, y, a, i) => {
     console.log(`x: ${x} y: ${y}`);
@@ -95,21 +95,25 @@ let generateTrials = (level, numTrials) => {
 var timerSubscribe;
 
 export function startGame(options) {
-    var _Observable = Observable;
+    //var _Observable = Observable;
     return (dispatch) => {
         dispatch({ type: 'START_GAME' });
         var trials = generateTrials(options.level, options.numTrials);
         dispatch(addTrials(trials));
 
-        const source = _Observable.timer(1000, options.delay).take(options.numTrials);
-        const timerSubscribe = source.subscribe(
+        const source = Observable.timer(1000, options.delay).take(options.numTrials + 1);  // +1 so that even the last round has a chance to check score
+        timerSubscribe = source.subscribe(
             cnt => {
                 console.log("emitting: " + cnt);
                 var t = trials[cnt];
-                // for the first display of turns, set a 1 sec delay; subsequent delays are based on options
-                dispatch(selectCoord(t.x, t.y, t.alphabet, cnt));
-                dispatch({ type: 'DECREMENT_TURN' });
-                dispatch(checkBoth());
+                if (cnt > 0)
+                    dispatch(checkBoth());
+
+                if (cnt < options.numTrials) {
+                    // for the first display of turns, set a 1 sec delay; subsequent delays are based on options
+                    dispatch(selectCoord(t.x, t.y, t.alphabet, cnt));
+                    dispatch({ type: 'DECREMENT_TURN' });
+                }
             },
             err => {
                 console.log(err);
