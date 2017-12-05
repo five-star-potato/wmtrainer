@@ -95,12 +95,13 @@ let generateTrials = (level, numTrials) => {
 var timerSubscribe;
 
 export function startGame(options) {
+    var _Observable = Observable;
     return (dispatch) => {
         dispatch({ type: 'START_GAME' });
         var trials = generateTrials(options.level, options.numTrials);
         dispatch(addTrials(trials));
 
-        const source = Observable.timer(1000, options.delay).take(options.numTrials);
+        const source = _Observable.timer(1000, options.delay).take(options.numTrials);
         const timerSubscribe = source.subscribe(
             cnt => {
                 console.log("emitting: " + cnt);

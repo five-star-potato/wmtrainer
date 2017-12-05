@@ -3,7 +3,12 @@ import Button from 'react-bootstrap/lib/Button';
 import BoardContainer from './components/BoardContainer';
 import GamePadContainer from './components/GamePadContainer';
 import HUDContainer from './components/HUDContainer';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/interval';
+
 import './App.css';
+
+console.log(Observable);
 
 class App extends Component {
   render() {
