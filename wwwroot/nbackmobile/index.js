@@ -7,6 +7,7 @@ import App from './App';
 
 const store = createStore((state = {}, action) => state);
 //const MyApp = connect()(App)
+console.log("starting n-back app.....");
 
 const TopLevel = () => (
   <Provider store={store}>
