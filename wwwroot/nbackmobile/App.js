@@ -1,21 +1,10 @@
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-import BoardContainer from './components/BoardContainer';
-import HUDContainer from './components/HUDContainer';
+import { StackNavigator } from 'react-navigation';
+import GameScreen from './GameScreen';
+import OptionScreen from './OptionScreen';
 
-export default class App extends Component {
-  render() {
-    return (
-      <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center'}}>
-        <HUDContainer />
-        <BoardContainer />
-      </View>
-    );
-  }
-}
+const App = StackNavigator({
+  Game: { screen: GameScreen },
+  Options: { screen: OptionScreen }
+});
 
+export default App;

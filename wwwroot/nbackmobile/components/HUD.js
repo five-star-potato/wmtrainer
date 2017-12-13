@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { View, Button, Alert } from 'react-native';
 
-const HUD = () => {
+const HUD = ({ gameStarted, showOptions, options, numTrialsLeft, tpScore, fpScore, fnScore, pct, onStartClick, onStopClick, onCloseOptions, onShowOptions, onSaveOptions }) => {
+    let btnText = gameStarted ? "Stop Game" : "Start Game";
+    let toggleGame = () => {
+        if (gameStarted) {
+            onStopClick();
+        }
+        else {
+            onStartClick(options);
+        }
+    }    
     onPressLearnMore = () => {
-        Alert.alert(
-            'Alert Title',
-            'My Alert Msg',
-            [
-              {text: 'Ask me later', onPress: () => console.log('Ask me later pressed')},
-              {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-              {text: 'OK', onPress: () => console.log('OK Pressed')},
-            ],
-            { cancelable: false }
-          );
+        toggleGame();
     }
     return (
         <View style={{
@@ -21,7 +21,7 @@ const HUD = () => {
           }}>
             <Button
                 onPress={onPressLearnMore}
-                title="Start Game"
+                title={btnText}
                 color="#841584"
                 accessibilityLabel="Start Game"
             />
